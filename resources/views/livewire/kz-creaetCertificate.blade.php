@@ -37,6 +37,11 @@
                                     Take Picture
                                     </a>
 
+                                    <a
+                                    class="btn btn-primary active mb-0 ml-1 text-white" style="float: right; margin-left:10px;display:none;" id="reTakePicture"  role="button" aria-pressed="true">
+                                    Retake Picture
+                                    </a>
+
                                     
                                     
                                 </div>
@@ -64,8 +69,19 @@
 
 
         $('#takePicture').click(function(){
+            $(this).hide();
             captureImage();
+            $(cameraFeed).hide();
+            $('#reTakePicture').show();
         });
+        $('#reTakePicture').click(function(){
+            $('#reTakePicture').hide();
+            $('#takePicture').show();
+            capturedImageDisplay.style.display = 'none';
+            $(cameraFeed).show();
+            openCameraButton.trigger('click');
+            
+        });;
 
         openCameraButton.on('click', () => {
             navigator.mediaDevices.getUserMedia({ video: true })
@@ -81,8 +97,8 @@
 
         function captureImage() {
             const context = capturedImage.getContext('2d');
-            capturedImage.width = cameraFeed.videoWidth;
-            capturedImage.height = cameraFeed.videoHeight;
+            capturedImage.width = 400;
+            capturedImage.height = 400;
             context.drawImage(cameraFeed, 0, 0, capturedImage.width, capturedImage.height);
             const imageData = capturedImage.toDataURL('image/png');
             capturedImageDisplay.src = imageData;
