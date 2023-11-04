@@ -4,8 +4,8 @@
         <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
             aria-hidden="true" id="iconSidenav"></i>
         <a class="align-items-center d-flex m-0 navbar-brand text-wrap" href="{{ route('dashboard') }}">
-            <img src="../assets/img/logo-ct.png" class="navbar-brand-img h-100" alt="...">
-            <span class="ms-3 font-weight-bold">Soft UI Dashboard Laravel Livewire</span>
+            <img src="../assets/img/kzlogo.jpeg" class="navbar-brand-img w-100 h-100" alt="...">
+            {{-- <span class="ms-3 font-weight-bold">Kidzania University</span> --}}
         </a>
     </div>
     <hr class="horizontal dark mt-0">
@@ -40,12 +40,12 @@
                 </a>
             </li>
 
-            <li class="nav-item mt-2">
+            {{-- <li class="nav-item mt-2">
                 <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Laravel Examples</h6>
-            </li>
+            </li> --}}
             <li class="nav-item">
-                <a class="nav-link {{ Route::currentRouteName() == 'user-profile' ? 'active' : '' }}"
-                    href="{{ route('user-profile') }}">
+                <a class="nav-link {{ Route::currentRouteName() == 'streams' ? 'active' : '' }}"
+                    href="{{ route('streams') }}">
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                         <svg width="12px" height="12px" viewBox="0 0 46 42" version="1.1"
@@ -71,27 +71,23 @@
                             </g>
                         </svg>
                     </div>
-                    <span class="nav-link-text ms-1">User Profile</span>
+                    <span class="nav-link-text ms-1">Streams</span>
                 </a>
             </li>
             <li class="nav-item pb-2">
-                <a class="nav-link {{ Route::currentRouteName() == 'user-management' ? 'active' : '' }}"
-                    href="{{ route('user-management') }}">
+                <a class="nav-link {{ Route::currentRouteName() == 'chapters' ? 'active' : '' }}"
+                    href="{{ route('chapters') }}">
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i style="font-size: 1rem;" class="fas fa-lg fa-list-ul ps-2 pe-2 text-center
-                        {{ in_array(request()->route()->getName(),['user-management']) ? 'text-white' : 'text-dark' }}"></i>
+                        {{ in_array(request()->route()->getName(),['chapters']) ? 'text-white' : 'text-dark' }}"></i>
                     </div>
-                    <span class="nav-link-text ms-1">User Management</span>
+                    <span class="nav-link-text ms-1">Chapters</span>
                 </a>
             </li>
-
-            <li class="nav-item mt-2">
-                <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Example pages</h6>
-            </li>
             <li class="nav-item">
-                <a class="nav-link {{ Route::currentRouteName() == 'tables' ? 'active' : '' }}"
-                    href="{{ route('tables') }}">
+                <a class="nav-link {{ Route::currentRouteName() == 'quizs' ? 'active' : '' }}"
+                    href="{{ route('quizs') }}">
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                         <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1"
@@ -114,8 +110,11 @@
                             </g>
                         </svg>
                     </div>
-                    <span class="nav-link-text ms-1">Tables</span>
+                    <span class="nav-link-text ms-1">Quizs</span>
                 </a>
+            </li>
+            {{-- <li class="nav-item mt-2">
+                <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Example pages</h6>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ Route::currentRouteName() == 'billing' ? 'active' : '' }}"
@@ -272,26 +271,7 @@
                 <a href="https://www.creative-tim.com/product/soft-ui-dashboard-pro-laravel-livewire"
                     class="btn btn-primary btn-md active px-5 text-white" target="_blank" role="button" aria-pressed="true">
                     Upgrade to PRO</a>
-            </li>
+            </li> --}}
         </ul>
-    </div>
-    <div class="sidenav-footer mx-3 mt-3 pt-3">
-        <div class="card card-background shadow-none card-background-mask-secondary" id="sidenavCard">
-            <div class="full-background" style="background-image: url('../assets/img/curved-images/white-curved.jpeg')">
-            </div>
-            <div class="card-body text-left p-3 w-100">
-                <div
-                    class="icon icon-shape icon-sm bg-white shadow text-center mb-3 d-flex align-items-center justify-content-center border-radius-md">
-                    <i class="ni ni-diamond text-dark text-gradient text-lg top-0" aria-hidden="true"
-                        id="sidenavCardIcon"></i>
-                </div>
-                <div class="docs-info">
-                    <h6 class="text-white up mb-0">Need help?</h6>
-                    <p class="text-xs font-weight-bold">Please check our docs</p>
-                    <a href="/documentation/bootstrap/overview/soft-ui-dashboard/index.html" target="_blank"
-                        class="btn btn-white btn-sm w-100 mb-0">Documentation</a>
-                </div>
-            </div>
-        </div>
     </div>
 </aside>

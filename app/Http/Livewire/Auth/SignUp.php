@@ -4,6 +4,8 @@ namespace App\Http\Livewire\Auth;
 
 use Livewire\Component;
 use App\Models\User;
+use App\Models\Stream;
+use App\Models\Chapter;
 use Illuminate\Support\Facades\Hash;
 
 class SignUp extends Component
@@ -39,6 +41,13 @@ class SignUp extends Component
 
     public function render()
     {
-        return view('livewire.auth.sign-up');
+        $streams = Stream::where('status',true)->get();
+        return view('livewire.auth.sign-up')->with(compact('streams')) ;
+    }
+
+    public function loadChapters($id){
+        
+        $chapters = Chapter::where('stream_id',$id)->get();        
+        return view('livewire.auth.sign-up')->with(compact('chapters')) ;
     }
 }
