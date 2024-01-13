@@ -139,8 +139,8 @@
                   <canvas id="chart-bars" class="chart-canvas" height="170px"></canvas>
                 </div>
               </div>
-              <h6 class="ms-2 mt-4 mb-0">Total Users </h6>
-              <p class="text-sm ms-2"> (<span class="font-weight-bolder">+23%</span>) than last week </p>
+              <h6 class="ms-2 mt-4 mb-0">Total Registrations </h6>
+              <p class="text-sm ms-2"> No of students registered overall.</p>
               {{-- <div class="container border-radius-lg">
                 <div class="row">
                   <div class="col-3 py-3 ps-0">
@@ -250,15 +250,21 @@
         <div class="col-lg-7">
           <div class="card">
             <div class="card-header pb-0">
-              <h6>Total Active Users</h6>
-              <p class="text-sm">
-                <i class="fa fa-arrow-up text-success"></i>
-              </p>
+              <h6>Total Stream Users</h6>
             </div>
             <div class="card-body p-3">
-              <div class="chart">
-                <canvas id="chart-line" class="chart-canvas" height="300px"></canvas>
-              </div>
+              <table class="table table-bordered table-striped">
+                  <tr>
+                    <th>Stream</th>
+                    <th>No Of Users</th>
+                  </tr>
+                  @foreach ($streamUsers as $user)
+                    <tr>
+                      <td>{{ $user->name }}</td>
+                      <td>{{ $user->total }}</td>
+                    </tr>
+                  @endforeach
+              </table>
             </div>
           </div>
         </div>
@@ -616,18 +622,28 @@
   <script src="/assets/js/plugins/Chart.extension.js"></script>
   <script>
     var ctx = document.getElementById("chart-bars").getContext("2d");
+    @if (count($dataForGraph['labels']) > 0)
+      var labels = {!! json_encode($dataForGraph['labels']) !!};
+    @else
+      var labels = null;
+    @endif
+    @if (count($dataForGraph['values']) > 0)
+      var values = {!! json_encode($dataForGraph['values']) !!};
+    @else
+      var values = null;
+    @endif
 
     new Chart(ctx, {
       type: "bar",
       data: {
-        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        labels: labels,
         datasets: [{
-          label: "Sales",
+          label: "Registrations",
           tension: 0.4,
           borderWidth: 0,
           pointRadius: 0,
           backgroundColor: "#fff",
-          data: [450, 200, 100, 220, 500, 100, 400, 230, 500],
+          data: values,
           maxBarThickness: 6
         }, ],
       },
@@ -649,7 +665,7 @@
             },
             ticks: {
               suggestedMin: 0,
-              suggestedMax: 500,
+              suggestedMax: 50,
               beginAtZero: true,
               padding: 0,
               fontSize: 14,
@@ -672,100 +688,100 @@
       },
     });
 
-    var ctx2 = document.getElementById("chart-line").getContext("2d");
+    // var ctx2 = document.getElementById("chart-line").getContext("2d");
 
-    var gradientStroke1 = ctx2.createLinearGradient(0, 230, 0, 50);
+    // var gradientStroke1 = ctx2.createLinearGradient(0, 230, 0, 50);
 
-    gradientStroke1.addColorStop(1, 'rgba(253,235,173,0.4)');
-    gradientStroke1.addColorStop(0.2, 'rgba(245,57,57,0.0)');
-    gradientStroke1.addColorStop(0, 'rgba(255,214,61,0)'); //purple colors
+    // gradientStroke1.addColorStop(1, 'rgba(253,235,173,0.4)');
+    // gradientStroke1.addColorStop(0.2, 'rgba(245,57,57,0.0)');
+    // gradientStroke1.addColorStop(0, 'rgba(255,214,61,0)'); //purple colors
 
-    var gradientStroke2 = ctx2.createLinearGradient(0, 230, 0, 50);
+    // var gradientStroke2 = ctx2.createLinearGradient(0, 230, 0, 50);
 
-    gradientStroke2.addColorStop(1, 'rgba(20,23,39,0.4)');
-    gradientStroke2.addColorStop(0.2, 'rgba(245,57,57,0.0)');
-    gradientStroke2.addColorStop(0, 'rgba(255,214,61,0)'); //purple colors
+    // gradientStroke2.addColorStop(1, 'rgba(20,23,39,0.4)');
+    // gradientStroke2.addColorStop(0.2, 'rgba(245,57,57,0.0)');
+    // gradientStroke2.addColorStop(0, 'rgba(255,214,61,0)'); //purple colors
 
 
-    new Chart(ctx2, {
-      type: "line",
-      data: {
-        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-        datasets: [{
-            label: "Mobile apps",
-            tension: 0.4,
-            borderWidth: 0,
-            pointRadius: 0,
-            borderColor: "#fbcf33",
-            borderWidth: 3,
-            backgroundColor: gradientStroke1,
-            data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
-            maxBarThickness: 6
+    // new Chart(ctx2, {
+    //   type: "line",
+    //   data: {
+    //     labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    //     datasets: [{
+    //         label: "Mobile apps",
+    //         tension: 0.4,
+    //         borderWidth: 0,
+    //         pointRadius: 0,
+    //         borderColor: "#fbcf33",
+    //         borderWidth: 3,
+    //         backgroundColor: gradientStroke1,
+    //         data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
+    //         maxBarThickness: 6
 
-          },
-          {
-            label: "Websites",
-            tension: 0.4,
-            borderWidth: 0,
-            pointRadius: 0,
-            borderColor: "#f53939",
-            borderWidth: 3,
-            backgroundColor: gradientStroke2,
-            data: [30, 90, 40, 140, 290, 290, 340, 230, 400],
-            maxBarThickness: 6
+    //       },
+    //       {
+    //         label: "Websites",
+    //         tension: 0.4,
+    //         borderWidth: 0,
+    //         pointRadius: 0,
+    //         borderColor: "#f53939",
+    //         borderWidth: 3,
+    //         backgroundColor: gradientStroke2,
+    //         data: [30, 90, 40, 140, 290, 290, 340, 230, 400],
+    //         maxBarThickness: 6
 
-          },
-        ],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        legend: {
-          display: false,
-        },
-        tooltips: {
-          enabled: true,
-          mode: "index",
-          intersect: false,
-        },
-        scales: {
-          yAxes: [{
-            gridLines: {
-              borderDash: [2],
-              borderDashOffset: [2],
-              color: '#dee2e6',
-              zeroLineColor: '#dee2e6',
-              zeroLineWidth: 1,
-              zeroLineBorderDash: [2],
-              drawBorder: false,
-            },
-            ticks: {
-              suggestedMin: 0,
-              suggestedMax: 500,
-              beginAtZero: true,
-              padding: 10,
-              fontSize: 11,
-              fontColor: '#adb5bd',
-              lineHeight: 3,
-              fontStyle: 'normal',
-              fontFamily: "Open Sans",
-            },
-          }, ],
-          xAxes: [{
-            gridLines: {
-              zeroLineColor: 'rgba(0,0,0,0)',
-              display: false,
-            },
-            ticks: {
-              padding: 10,
-              fontSize: 11,
-              fontColor: '#adb5bd',
-              lineHeight: 3,
-              fontStyle: 'normal',
-              fontFamily: "Open Sans",
-            },
-          }, ],
-        },
-      },
-    });
+    //       },
+    //     ],
+    //   },
+    //   options: {
+    //     responsive: true,
+    //     maintainAspectRatio: false,
+    //     legend: {
+    //       display: false,
+    //     },
+    //     tooltips: {
+    //       enabled: true,
+    //       mode: "index",
+    //       intersect: false,
+    //     },
+    //     scales: {
+    //       yAxes: [{
+    //         gridLines: {
+    //           borderDash: [2],
+    //           borderDashOffset: [2],
+    //           color: '#dee2e6',
+    //           zeroLineColor: '#dee2e6',
+    //           zeroLineWidth: 1,
+    //           zeroLineBorderDash: [2],
+    //           drawBorder: false,
+    //         },
+    //         ticks: {
+    //           suggestedMin: 0,
+    //           suggestedMax: 500,
+    //           beginAtZero: true,
+    //           padding: 10,
+    //           fontSize: 11,
+    //           fontColor: '#adb5bd',
+    //           lineHeight: 3,
+    //           fontStyle: 'normal',
+    //           fontFamily: "Open Sans",
+    //         },
+    //       }, ],
+    //       xAxes: [{
+    //         gridLines: {
+    //           zeroLineColor: 'rgba(0,0,0,0)',
+    //           display: false,
+    //         },
+    //         ticks: {
+    //           padding: 10,
+    //           fontSize: 11,
+    //           fontColor: '#adb5bd',
+    //           lineHeight: 3,
+    //           fontStyle: 'normal',
+    //           fontFamily: "Open Sans",
+    //         },
+    //       }, ],
+    //     },
+    //   },
+    // });
   </script>
