@@ -53,8 +53,8 @@ class KzApp extends Component
         $reg->stream_id = $chapter->stream_id;
         $reg->save();
         $hasQuiz = Quiz::where('chapter_id', $id)->first();
-        $haschapter = Chapter::where('stream_id',$chapter->stream_id)->where('id','>',$chapter->id)->first();        
-        return view('livewire.kzapp-chapter')->with(compact('chapter','hasQuiz','haschapter')) ;
+        $hasNextChapter = Chapter::where('stream_id',$chapter->stream_id)->where('id','>',$chapter->id)->first();
+        return view('livewire.kzapp-chapter')->with(compact('chapter','hasQuiz','hasNextChapter')) ;
     }
 
     public function createCertficate(){        

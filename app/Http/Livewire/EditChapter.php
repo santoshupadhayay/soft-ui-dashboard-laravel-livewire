@@ -27,8 +27,8 @@ class EditChapter extends Component
                 $filePath = $request->file('file')->storeAs('chapter_files', $fileName, 'public');
                 $filenameToStore = '/storage/' . $filePath;
 
-                $gController = new GoogleDriveController();
-                $link = $gController->uploadFile($request);
+                // $gController = new GoogleDriveController();
+                // $link = $gController->uploadFile($request);
             }
     
             $chapter = Chapter::find($request->id);

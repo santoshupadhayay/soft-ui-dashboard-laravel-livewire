@@ -24,8 +24,8 @@ class AddChapter extends Component
                 $filePath = $request->file('file')->storeAs('chapter_files', $fileName, 'public');
                 $filenameToStore = '/storage/' . $filePath;
 
-                $gController = new GoogleDriveController();
-                $gController->uploadFile($request);
+                // $gController = new GoogleDriveController();
+                // $gController->uploadFile($request);
             }
     
             $chapter = new Chapter();

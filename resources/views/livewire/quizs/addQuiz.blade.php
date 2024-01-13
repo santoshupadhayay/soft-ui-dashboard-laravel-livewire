@@ -28,7 +28,7 @@
                 </div>  
                 <div class="form-group">
                   <label for="quizDescription">Description</label>
-                  <textarea  name="description" class="form-control quizDescription" id="quizDescription" placeholder="Description" required></textarea>
+                  <textarea  name="description" class="form-control quizDescription" id="quizDescription" placeholder="Description"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
               </form>

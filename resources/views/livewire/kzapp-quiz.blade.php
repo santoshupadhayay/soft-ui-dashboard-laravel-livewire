@@ -12,7 +12,7 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-12"  style="height: 387px; overflow-y:scroll;">
+                                <div class="col-md-12"  style="height: 300px; overflow:hidden;">
                                     @php $index = 0; @endphp 
                                     @foreach ($questions as $question)
                                         <div class="card card-plain mt-1 questBlock" >
@@ -25,7 +25,7 @@
                                             <div class="card-body">
                                                 <div class="row">
                                                     @foreach ($question->options as $option)        
-                                                        <div class="col-md-3 col-lg-3 col-sm-12">
+                                                        <div class="col-md-12 col-lg-12 col-sm-12">
                                                             <div class="form-check">
                                                                 <input  name="option{{ $index }}" type="radio" class="form-check-input optionValue{{ $index }}" value="{{ $option->is_correct  == 1 ? 1 : 0}}" id="option{{ $option->id }}">
                                                                 <label class="form-check-label" for="option{{ $option->id }}">{{ $option->option }}</label>
@@ -47,7 +47,11 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <a
-                                    class="btn btn-primary active mb-0 text-white submitTest" style="float: right" role="button" aria-pressed="true">
+                                    class="btn btn-primary active mb-0 text-white nextQuestion" style="float: right" role="button" aria-pressed="true">
+                                    Next
+                                    </a>
+                                    <a
+                                    class="btn btn-primary active mb-0 text-white submitQuestion" style="float: right" role="button" aria-pressed="true">
                                     Submit
                                     </a>
                                     @if (!empty($hasNextChapter))
@@ -57,7 +61,7 @@
                                     </a>
                                     @else
                                     <a href="{{ route('createCertficate') }}"
-                                    class="btn btn-primary active mb-0 text-white actionBtns" style="float: right; display: none" role="button" aria-pressed="true">
+                                    class="btn btn-primary active mb-0 text-white actionBtns certificateBtn" style="float: right; display: none" role="button" aria-pressed="true">
                                     Get Certificate
                                     </a>
                                     @endif
@@ -76,21 +80,58 @@
         </div>
     </div>
 </section>
+<style>
+    .questBlock{
+        display: none;
+    }
+</style>
 <script>
     $(document).ready(function(){
-        $(".submitTest").click(function(){
-            var element = $(".questBlock");
-            $.each(element, function(i,v){
-                console.log(v);
-                if($(v).find(".optionValue"+i+":checked").val() == 1){
-                    $(v).find('.resultText').html('<span class="badge badge-sm bg-gradient-success">Correct !!</span>');
-                }else{
-                    $(v).find('.resultText').html('<span class="badge badge-sm bg-gradient-danger">Incorrect !!</span>');
-                };
-            });
-            $(this).hide();
-            $(".actionBtns").show();
+
+        var quizCouter = 0
+        var totalQuiz = $(".questBlock").length;
+        $(".submitQuestion").click(function(){
+            var element = $(".questBlock").eq(quizCouter);
+            for (var i = 0; i < element.find(".optionValue"+quizCouter).length; i++) {
+                console.log(element.find(".optionValue"+quizCouter));
+                if (element.find(".optionValue"+quizCouter)[i].value == '1') {
+                    var CorrectOption = $(element.find(".optionValue"+quizCouter)[i]).next('label').text();
+                    break; // Once found, exit the loop
+                }
+            }
+            if(element.find(".optionValue"+quizCouter+":checked").val() == 1){
+                element.find('.resultText').html('<span class="badge badge-sm bg-gradient-success">Correct Answer !!</span>');
+            }else{
+                element.find('.resultText').html('<span class="badge badge-sm bg-gradient-danger">Oops Incorrect Answer !!</span><br><br><b>The correct answer is '+CorrectOption+'</b>');
+            };
+            $(".submitQuestion").hide();
+            if(quizCouter <= totalQuiz-1){
+                console.log(quizCouter , totalQuiz-1);
+                $(".nextQuestion").show();    
+            }
+            if(quizCouter == totalQuiz-1){
+                $(".submitQuestion").hide();
+                $(".nextQuestion").hide();
+                $(".certificateBtn").show();
+            }
         })
+        $(".nextQuestion").click(function(){
+            $(".submitQuestion").show();
+            $(".nextQuestion").hide();
+            $(".questBlock").hide();
+            quizCouter++;
+            if(quizCouter < (".questBlock").length){
+                $(".questBlock").eq(quizCouter).show();
+            }else{
+                $(".submitQuestion").hide();
+                $(".nextQuestion").hide();
+                $(".certificateBtn").show();
+            }
+        })
+
+        
+        $(".nextQuestion").hide()
+        $(".questBlock").hide().eq(0).show();
     })
 </script>
 

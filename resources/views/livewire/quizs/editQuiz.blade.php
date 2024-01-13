@@ -29,7 +29,7 @@
                 </div>  
                 <div class="form-group">
                   <label for="quizDescription">Description</label>
-                  <textarea  name="description" class="form-control quizDescription" id="quizDescription" placeholder="Description" required>{{ $quiz->description }}</textarea>
+                  <textarea  name="description" class="form-control quizDescription" id="quizDescription" placeholder="Description">{{ $quiz->description }}</textarea>
                 </div>
 
                 <div class="form-group">
@@ -126,7 +126,7 @@
                   </div>
                   <div class="form-group">
                     <label for="questionDescription">Description</label>
-                    <textarea  name="description" class="form-control questionDescription" id="questionDescription" placeholder="Description" required></textarea>
+                    <textarea  name="description" class="form-control questionDescription" id="questionDescription" placeholder="Description"></textarea>
                   </div>
 
                   <div class="form-group">

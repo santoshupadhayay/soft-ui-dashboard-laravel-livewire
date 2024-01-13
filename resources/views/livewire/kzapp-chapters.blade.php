@@ -13,16 +13,32 @@
                         <div class="card-body">
                             <div class="row mt-4">
                                 <ol class="list-group">
+                                    @php
+                                        $i = 1;
+                                        $chapterId=null;
+                                    @endphp
                                     @foreach ($chapters as $chapter)
                                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                                      {{ $chapter->name }}
-                                      <a href="{{ route('viewChapter',['id' => $chapter->id]) }}">
-                                        <span class="badge badge-sm bg-gradient-success">Start</span>
-                                      </a>
+                                      {{ $i }}. {{ $chapter->name }}
                                     </li>
+                                    @php
+                                        if($i ==1){
+                                            $chapterId = $chapter->id;
+                                        }
+                                        $i++;
+                                    @endphp
                                     @endforeach
                                 </ol>
                             </div>
+                            @if($chapterId != null)
+                                <div class="row mt-4">
+                                    <div class="col-md-12">
+                                        <a class="btn btn-small btn-success" style="float: right;" href="{{ route('viewChapter',['id' => $chapterId]) }}">
+                                            <span>Start</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>

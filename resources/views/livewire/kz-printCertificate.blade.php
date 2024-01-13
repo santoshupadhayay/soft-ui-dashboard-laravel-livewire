@@ -7,7 +7,7 @@
                 <div class="col-xl-6 col-lg-6 col-md-6 d-flex flex-column mx-auto">
                     <div class="card card-plain mt-2">
                         <div class="card-header pb-0 text-center bg-transparent">
-                            <img src="../assets/img/kzlogo.jpeg" class="navbar-brand-img w-50 h-50" alt="...">
+                            <img src="../assets/img/kzlogo.png" class="navbar-brand-img w-50 h-50" alt="...">
                         </div>
                         <div class="card-body text-center" style="height: 387px">
                             <div class="row">

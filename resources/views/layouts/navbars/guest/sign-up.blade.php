@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3  navbar-transparent mt-4">
     <div class="container">
         <a class="navbar-brand d-flex flex-column font-weight-bolder ms-lg-0 ms-3 text-white" href="#">
-            <img src="../assets/img/kzlogo.jpeg" style="width: 15%" class="navbar-brand-img" alt="..."> 
+            <img src="../assets/img/kzlogo.png" style="width: 7%" class="navbar-brand-img" alt="..."> 
         </a>
         <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse"
             data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false"

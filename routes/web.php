@@ -44,7 +44,7 @@ use App\Http\Livewire\KzApp;
 
 
  //app
- Route::get('/kzapp', KzApp::class);
+ Route::get('/kzapp', KzApp::class)->name("kzapp");
  Route::any('/register', [Login::class,'register'])->name('register');
  Route::get('/loadStreams', [KzApp::class,'loadStreams'])->name('loadStreams');
  Route::get('/loadChapters/{id}', [KzApp::class,'loadChapters'])->name('loadChapters');

@@ -36,7 +36,7 @@
   <script>
     $(document).ready(function(){
       tinymce.init({
-        selector: '#streamDescription',
+        // selector: '#streamDescription',  
       });
     })
   </script>
