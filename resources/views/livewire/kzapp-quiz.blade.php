@@ -60,7 +60,7 @@
                                     Next
                                     </a>
                                     @else
-                                    <a href="{{ route('createCertficate') }}"
+                                    <a href="{{ route('printCertificate') }}"
                                     class="btn btn-primary active mb-0 text-white actionBtns certificateBtn" style="float: right; display: none" role="button" aria-pressed="true">
                                     Get Certificate
                                     </a>

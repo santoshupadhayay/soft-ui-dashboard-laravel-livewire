@@ -9,12 +9,14 @@ use App\Models\Registration;
 use App\Models\Quiz;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Session;
 use PDF;
 
 class KzApp extends Component
 {
     public function render()
     {
+        Session::forget('regId');
         return view('livewire.kz-app');
     }
 
@@ -88,14 +90,10 @@ class KzApp extends Component
     }
     public function printCertificate(Request $request){
 
-        $reg = Registration::where('id',session('regId'))->first()->toArray();
-        $stream = Stream::find($reg['stream_id']);
-        $reg['stream'] = $stream->name;
-        $data = [
-            'reg' => $reg
-        ];
-        $pdf = PDF::loadView('livewire.kz-printCertificate', $data);
-        return $pdf->stream('certificate_'.session('regId').'.pdf');
+        $reg = Registration::where('id',session('regId'))->first();
+        $stream = Stream::find($reg->stream_id);
+        $reg->stream = $stream->name;
+        return view('livewire.kz-viewCertificate')->with(compact('reg')) ;
     }
 
     public function appQuiz($id){

@@ -1,5 +1,5 @@
 <div class="fixed-plugin">
-    <a style="display: none" class="fixed-plugin-button text-dark position-fixed px-3 py-2">
+    <a style="display: non" class="fixed-plugin-button text-dark position-fixed px-3 py-2">
         <i class="fa fa-cog py-2"> </i>
     </a>
     <div class="card shadow-lg ">
